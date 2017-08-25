@@ -21,14 +21,14 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+  host:
     - python
     - setuptools
     - cython
     - numpy x.x
-    - zlib 1.2.*
+    - zlib
     - lzo 2.06  # [linux]
-    - bzip2 1.0.*
-    - hdf5 1.8.18|1.8.18.*
+    - hdf5
     - numexpr
     # Building blosc is done internally. The version is up-to-date.
     # - blosc
@@ -37,10 +37,8 @@ requirements:
     - six
     - numpy x.x
     - numexpr
-    - hdf5 1.8.18|1.8.18.*
-    - zlib 1.2.*
+    - hdf5
     - lzo 2.06  # [linux]
-    - bzip2 1.0.*
     # building blosc is done internally. The version is up-to-date.
     # - blosc
 
