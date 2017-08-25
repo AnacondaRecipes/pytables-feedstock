@@ -27,7 +27,7 @@ requirements:
     - cython
     - numpy x.x
     - zlib
-    - lzo 2.06  # [linux]
+    - lzo 2.*   # [linux]
     - hdf5
     - numexpr
     # Building blosc is done internally. The version is up-to-date.
@@ -38,7 +38,7 @@ requirements:
     - numpy x.x
     - numexpr
     - hdf5
-    - lzo 2.06  # [linux]
+    - lzo 2.*  # [linux]
     # building blosc is done internally. The version is up-to-date.
     # - blosc
 
