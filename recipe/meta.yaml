@@ -25,7 +25,7 @@ requirements:
     - python
     - setuptools
     - cython
-    - numpy x.x
+    - numpy
     - zlib
     - lzo 2.*   # [linux]
     - hdf5
@@ -35,7 +35,7 @@ requirements:
   run:
     - python
     - six
-    - numpy x.x
+    - {{ pin_compatible('numpy') }}
     - numexpr
     - hdf5
     - lzo 2.*  # [linux]
