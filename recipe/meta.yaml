@@ -23,12 +23,13 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
+    - bzip2
     - python
     - setuptools
     - cython
     - numpy
     - zlib
-    - lzo 2.*   # [linux]
+    - lzo     # [linux]
     - hdf5
     - numexpr
     # Building blosc is done internally. The version is up-to-date.
@@ -38,8 +39,6 @@ requirements:
     - six
     - {{ pin_compatible('numpy') }}
     - numexpr
-    - hdf5
-    - lzo 2.*  # [linux]
     # building blosc is done internally. The version is up-to-date.
     # - blosc
 
