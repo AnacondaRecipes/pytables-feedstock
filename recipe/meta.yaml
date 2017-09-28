@@ -28,7 +28,7 @@ requirements:
     - cython
     - numpy
     - zlib
-    - lzo     # [linux]
+    - lzo
     - hdf5
     - numexpr
     # Building blosc is done internally. The version is up-to-date.
