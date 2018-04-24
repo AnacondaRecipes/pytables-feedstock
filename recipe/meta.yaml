@@ -32,15 +32,12 @@ requirements:
     - lzo
     - hdf5
     - numexpr
-    # Building blosc is done internally. The version is up-to-date.
-    # - blosc
+    - blosc
   run:
     - python
     - six
     - {{ pin_compatible('numpy') }}
     - numexpr
-    # building blosc is done internally. The version is up-to-date.
-    # - blosc
 
 test:
   requires:
