@@ -1,0 +1,62 @@
+From c8198548f124b08727783fa14e5b7d7257c0fae2 Mon Sep 17 00:00:00 2001
+From: Ray Donnelly <mingw.android@gmail.com>
+Date: Sat, 28 Apr 2018 23:21:45 +0100
+Subject: [PATCH] Python 3.7 fix for re.split() in version detection
+
+re.split("\s*") has changed from splitting on 1 or more spaces in Python 3.6
+(with a deprecation warning) to splitting on 0 or more spaces in Python 3.7.
+
+In Python 3.7 this means it splits at every character.
+
+With Python 3.6:
+
+python -c "import re; print(re.split('\s*', '#define H5_VERS_MAJOR    1'))"
+/opt/conda/lib/python3.6/re.py:212: FutureWarning: split() requires a non-empty pattern match.
+  return _compile(pattern, flags).split(string, maxsplit)
+['#define', 'H5_VERS_MAJOR', '1']
+
+With Python 3.7b3:
+
+python -c "import re; print(re.split('\s*', '#define H5_VERS_MAJOR    1'))"
+['', '#', 'd', 'e', 'f', 'i', 'n', 'e', '', 'H', '5', '_', 'V', 'E', 'R', 'S', '_', 'M', 'A', 'J', 'O', 'R', '', '1', '']
+---
+ setup.py | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 1adde029..8ca4675d 100755
+--- a/setup.py
++++ b/setup.py
+@@ -358,11 +358,11 @@ def get_hdf5_version(headername):
+     with open(headername) as fd:
+         for line in fd:
+             if 'H5_VERS_MAJOR' in line:
+-                major_version = int(re.split("\s*", line)[2])
++                major_version = int(re.split("\s+", line)[2])
+             if 'H5_VERS_MINOR' in line:
+-                minor_version = int(re.split("\s*", line)[2])
++                minor_version = int(re.split("\s+", line)[2])
+             if 'H5_VERS_RELEASE' in line:
+-                release_version = int(re.split("\s*", line)[2])
++                release_version = int(re.split("\s+", line)[2])
+             if (major_version != -1 and minor_version != -1 and
+                     release_version != -1):
+                 break
+@@ -380,11 +380,11 @@ def get_blosc_version(headername):
+     release_version = -1
+     for line in open(headername):
+         if 'BLOSC_VERSION_MAJOR' in line:
+-            major_version = int(re.split("\s*", line)[2])
++            major_version = int(re.split("\s+", line)[2])
+         if 'BLOSC_VERSION_MINOR' in line:
+-            minor_version = int(re.split("\s*", line)[2])
++            minor_version = int(re.split("\s+", line)[2])
+         if 'BLOSC_VERSION_RELEASE' in line:
+-            release_version = int(re.split("\s*", line)[2])
++            release_version = int(re.split("\s+", line)[2])
+         if (major_version != -1 and minor_version != -1 and
+                 release_version != -1):
+             break
+-- 
+2.15.1 (Apple Git-101)
+

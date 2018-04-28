@@ -8,7 +8,8 @@ source:
   url: https://github.com/PyTables/PyTables/archive/v{{ version }}.tar.gz
   sha256: 02bcd382a61951d2f0a882698910a00f43f9d8cf437d5cbe3075c513dee0ef74
   patches:
-      - noavx2.patch
+    - noavx2.patch
+    - 0001-Python-3.7-fix-for-re.split-in-version-detection.patch
 
 build:
   number: 0
@@ -68,6 +69,7 @@ about:
 extra:
   recipe-maintainers:
     - msarahan
+    - mingwandroid
     - ocefpaf
-    - tomkooij
     - scopatz
+    - tomkooij
