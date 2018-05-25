@@ -13,7 +13,7 @@ source:
     - 0001-Python-3.7-fix-for-re.split-in-version-detection.patch
 
 build:
-  number: 1
+  number: 2
   entry_points:
     - pt2to3 = tables.scripts.pt2to3:main
     - ptdump = tables.scripts.ptdump:main
