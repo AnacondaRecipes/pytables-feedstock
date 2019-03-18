@@ -35,7 +35,7 @@ requirements:
     - cython
     - numpy
     - zlib
-    - lzo  # [linux]
+    - lzo
     - bzip2
     - hdf5
     - numexpr
@@ -47,7 +47,7 @@ requirements:
     - numexpr
     - hdf5
     - zlib
-    - lzo  # [linux]
+    - lzo
     - bzip2
     - blosc
     - mock
