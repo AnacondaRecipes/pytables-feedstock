@@ -25,7 +25,7 @@ requirements:
     - python
     - pip
     - cython
-    - numpy
+    - numpy 1.14
     - zlib
     - lzo
     - bzip2
