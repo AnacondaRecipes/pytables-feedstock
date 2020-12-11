@@ -12,7 +12,7 @@ source:
     - remove_dll_check.patch
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - pt2to3 = tables.scripts.pt2to3:main
     - ptdump = tables.scripts.ptdump:main
@@ -28,7 +28,7 @@ requirements:
     - python
     - pip
     - cython
-    - numpy 1.14
+    - numpy-devel {{ numpy }}
     - zlib
     - lzo
     - bzip2
@@ -38,7 +38,6 @@ requirements:
   run:
     - python
     - six
-    - {{ pin_compatible('numpy') }}
     - numexpr
     - hdf5
     - zlib
