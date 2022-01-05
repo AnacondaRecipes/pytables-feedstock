@@ -31,7 +31,8 @@ requirements:
     - python
     - pip
     - cython
-    - numpy-devel {{ numpy }}
+    - numpy-devel {{ numpy }}  # [not (osx and arm64) and py<=39]
+    - numpy {{ numpy }}  # [(osx and arm64) or py>39]
     - zlib
     - lzo
     - bzip2
