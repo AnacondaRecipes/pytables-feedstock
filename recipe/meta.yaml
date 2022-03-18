@@ -54,6 +54,7 @@ requirements:
     - numexpr >=2.6.2
     - packaging
     - zlib
+    - zstd  # [win]
 
 test:
   requires:
