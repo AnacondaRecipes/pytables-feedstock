@@ -37,7 +37,8 @@ requirements:
     - hdf5 >=1.8.15
     - lzo
     - numexpr >=2.6.2
-    - numpy
+    - numpy  1.19    # [py==37 or py==38 or py==39]
+    - numpy  1.21    # [py==310]
     - packaging
     - setuptools >=42.0
     - wheel
