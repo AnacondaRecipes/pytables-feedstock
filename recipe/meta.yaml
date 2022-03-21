@@ -1,4 +1,4 @@
-{% set version = "3.6.1" %}
+{% set version = "3.7.0" %}
 
 package:
   name: pytables
@@ -6,19 +6,16 @@ package:
 
 source:
   url: https://pypi.io/packages/source/t/tables/tables-{{ version }}.tar.gz
-  sha256: 49a972b8a7c27a8a173aeb05f67acb45fe608b64cd8e9fa667c0962a60b71b49
-  patches:
-    - do_not_copy_dlls_into_package.patch
-    - remove_dll_check.patch
+  sha256: e92a887ad6f2a983e564a69902de4a7645c30069fc01abd353ec5da255c5e1fe
 
 build:
-  number: 1
+  number: 0
   entry_points:
     - pt2to3 = tables.scripts.pt2to3:main
     - ptdump = tables.scripts.ptdump:main
     - ptrepack = tables.scripts.ptrepack:main
     - pttree = tables.scripts.pttree:main
-  skip: true  # [py<35]
+  skip: true  # [py<36]
   ignore_run_exports:
     - zlib
     - lzo     # [win]
@@ -27,45 +24,52 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - patch     # [not win]
-    - m2-patch  # [win]
   host:
     - python
     - pip
-    - cython
-    - numpy-devel {{ numpy }}  # [not (osx and arm64) and py<=39]
-    - numpy {{ numpy }}  # [(osx and arm64) or py>39]
-    - zlib
-    - lzo
+    - blosc >=1.4.1
     - bzip2
-    - hdf5
-    - numexpr
-    - blosc
+    - cython >=0.29.21
+    # HDF5 >= 1.8.4 (>=1.8.15 is strongly recommended),
+    # https://github.com/PyTables/PyTables/blob/v3.7.0/doc/source/usersguide/installation.rst#prerequisites
+    - hdf5 >=1.8.15
+    - lzo
+    - numexpr >=2.6.2
+    - numpy  1.19    # [py==37 or py==38 or py==39]
+    - numpy  1.21    # [py==310]
+    - packaging
+    - setuptools >=42.0
+    - wheel
+    - zlib
   run:
     - python
-    - six
-    - numexpr
-    - hdf5
-    - zlib
-    - lzo
+    - {{ pin_compatible('numpy') }}
+    - blosc >=1.4.1
     - bzip2
-    - blosc
+    - hdf5 >=1.8.15
+    - lzo
     - mock
+    - numexpr >=2.6.2
+    - packaging
+    - zlib
+    - zstd  # [win]
 
 test:
   requires:
-    - setuptools
     - mock
+    - pip
+    - setuptools
   commands:
+    - pip check
     - pt2to3 -h
     - ptdump -h
     - ptrepack -h
     - pttree -h
 
-
 about:
-  home: http://www.pytables.org
-  license: BSD 3-Clause
+  home: https://www.pytables.org
+  license: BSD-3-Clause
+  lcense_family: BSD
   license_file: LICENSE.txt
   summary: 'Brings together Python, HDF5 and NumPy to easily handle large amounts of data.'
   description: |
@@ -73,7 +77,7 @@ about:
     efficiently and easily cope with extremely large amounts of data. PyTables
     is built on top of the HDF5 library, using the Python language and the
     NumPy package.
-  doc_url: http://www.pytables.org/
+  doc_url: https://www.pytables.org/
   dev_url: https://github.com/PyTables
 
 extra:
