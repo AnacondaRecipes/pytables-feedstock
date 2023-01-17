@@ -9,7 +9,7 @@ source:
   sha256: e92a887ad6f2a983e564a69902de4a7645c30069fc01abd353ec5da255c5e1fe
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - pt2to3 = tables.scripts.pt2to3:main
     - ptdump = tables.scripts.ptdump:main
@@ -30,9 +30,7 @@ requirements:
     - blosc >=1.4.1
     - bzip2
     - cython >=0.29.21
-    # HDF5 >= 1.8.4 (>=1.8.15 is strongly recommended),
-    # https://github.com/PyTables/PyTables/blob/v3.7.0/doc/source/usersguide/installation.rst#prerequisites
-    - hdf5 >=1.8.15
+    - hdf5
     - lzo
     - numexpr >=2.6.2
     - numpy  1.19    # [py==37 or py==38 or py==39]
