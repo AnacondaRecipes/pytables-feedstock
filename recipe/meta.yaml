@@ -11,11 +11,11 @@ source:
 build:
   number: 1
   entry_points:
-    - pt2to3 = tables.scripts.pt2to3:main
     - ptdump = tables.scripts.ptdump:main
     - ptrepack = tables.scripts.ptrepack:main
+    - pt2to3 = tables.scripts.pt2to3:main
     - pttree = tables.scripts.pttree:main
-  skip: true  # [py<36]
+  skip: true  # [py<38]
   ignore_run_exports:
     - zlib
     - lzo     # [win]
