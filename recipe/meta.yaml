@@ -27,30 +27,25 @@ requirements:
   host:
     - python
     - pip
-    - blosc >=1.4.1
-    - bzip2
-    - cython >=0.29.21
-    - hdf5
-    - lzo
-    - numexpr >=2.6.2
-    - numpy  1.19    # [py==37 or py==38 or py==39]
-    - numpy  1.21    # [py==310]
-    - packaging
-    - setuptools >=42.0
+    - setuptools
     - wheel
-    - zlib
+    - numpy  {{ numpy }}
+    - packaging 23.0
+    - py-cpuinfo 8.0.0
+    - cython 0.29.33
+    - blosc2 ~=2.0.0
   run:
     - python
-    - {{ pin_compatible('numpy') }}
-    - blosc >=1.4.1
-    - bzip2
-    - hdf5 >=1.8.15
-    - lzo
-    - mock
+    - numpy {{ numpy }}
+    # Keep in sync with tables/req_versions.py and
+    # doc/source/usersguide/installation.rst *and*
+    # pyproject.toml
     - numexpr >=2.6.2
+    # blosc2 wheel is actually only needed when compiling on conda envs.
+    # Otherwise, lib comes bundled in PyTables wheels (but it doesn't hurt either).
+    - blosc2 ~=2.0.0
     - packaging
-    - zlib
-    - zstd  # [win]
+    - py-cpuinfo
 
 test:
   requires:
