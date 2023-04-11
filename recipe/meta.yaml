@@ -42,7 +42,7 @@ requirements:
     - blosc 1.21.3
     - c-blosc2 2.8.0
     - hdf5 1.12.1
-    - lzo 2.10  # [linux]
+    - lzo 2.10
     - bzip2 1.0.8
   run:
     - python
@@ -53,7 +53,7 @@ requirements:
     - packaging
     - py-cpuinfo
     - hdf5
-    - lzo  # [linux]
+    - lzo
 
 test:
   requires:
