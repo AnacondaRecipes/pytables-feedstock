@@ -53,7 +53,7 @@ requirements:
     - packaging
     - py-cpuinfo
     - hdf5
-    - lzo
+    - lzo  # [linux]
 
 test:
   requires:
