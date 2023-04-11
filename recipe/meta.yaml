@@ -43,7 +43,7 @@ requirements:
     - c-blosc2 2.8.0
     - hdf5 1.12.1
     - lzo 2.10  # [linux]
-    - bzip2
+    - bzip2 1.0.8
   run:
     - python
     - numpy {{ numpy }}
