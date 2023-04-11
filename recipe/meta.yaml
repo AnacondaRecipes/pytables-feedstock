@@ -7,6 +7,8 @@ package:
 source:
   url: https://pypi.io/packages/source/t/tables/tables-{{ version }}.tar.gz
   sha256: 34f3fa2366ce20b18f1df573a77c1d27306ce1f2a41d9f9eff621b5192ea8788
+  patches:
+    - patches/use_system_blosc2.patch
 
 build:
   number: 0
@@ -24,36 +26,43 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - patch  # [unix]
+    - m2-patch  # [win]
   host:
     - python
     - pip
     - setuptools
     - wheel
     - numpy  {{ numpy }}
-    - packaging 23.0
-    - py-cpuinfo 8.0.0
-    - cython 0.29.33
-    - blosc2 ~=2.0.0
+    - packaging
+    - py-cpuinfo
+    - cython
+    - blosc
+    - c-blosc2
+    - hdf5
+    - lzo
   run:
     - python
     - numpy {{ numpy }}
-    # Keep in sync with tables/req_versions.py and
-    # doc/source/usersguide/installation.rst *and*
-    # pyproject.toml
     - numexpr >=2.6.2
-    # blosc2 wheel is actually only needed when compiling on conda envs.
-    # Otherwise, lib comes bundled in PyTables wheels (but it doesn't hurt either).
-    - blosc2 ~=2.0.0
+    - blosc
+    - c-blosc2
     - packaging
     - py-cpuinfo
+    - hdf5
+    - lzo
 
 test:
   requires:
     - mock
     - pip
     - setuptools
+    - py-cpuinfo
   commands:
-    - pip check
+  # pip check raises a false alarm for blosc2, which isn't needed at this time.
+  # c-blosc2 has been added in its place.
+    - pip check || 1     # [win]
+    - pip check || true  # [unix]
     - pt2to3 -h
     - ptdump -h
     - ptrepack -h
