@@ -13,4 +13,4 @@ export PYTABLES_NO_BLOSC2_WHEEL
 # Remove the pre-cythonized files which may not be compatible.
 rm -f tables/*.c
 
-$PYTHON -m pip install --no-deps --no-cache-dir --ignore-installed .
+$PYTHON -m pip install --no-deps --no-build-isolation --no-cache-dir --ignore-installed .
