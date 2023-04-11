@@ -35,13 +35,13 @@ requirements:
     - setuptools
     - wheel
     - numpy  {{ numpy }}
-    - packaging
-    - py-cpuinfo
-    - cython
-    - blosc
-    - c-blosc2
-    - hdf5
-    - lzo
+    - packaging 23.0
+    - py-cpuinfo 8.0.0
+    - cython 0.29.33
+    - blosc 1.21.3
+    - c-blosc2 2.8.0
+    - hdf5 1.12.1
+    - lzo 2.10
   run:
     - python
     - numpy {{ numpy }}
@@ -72,7 +72,7 @@ test:
 about:
   home: https://www.pytables.org
   license: BSD-3-Clause
-  lcense_family: BSD
+  license_family: BSD
   license_file: LICENSE.txt
   summary: 'Brings together Python, HDF5 and NumPy to easily handle large amounts of data.'
   description: |
