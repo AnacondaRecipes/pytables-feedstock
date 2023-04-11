@@ -18,6 +18,7 @@ build:
     - pt2to3 = tables.scripts.pt2to3:main
     - pttree = tables.scripts.pttree:main
   skip: true  # [py<38]
+  # c-blosc2 is currently not available for s390x
   skip: true  # [s390x]
   ignore_run_exports:
     - zlib
