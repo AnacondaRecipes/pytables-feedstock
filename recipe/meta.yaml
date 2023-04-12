@@ -54,6 +54,9 @@ requirements:
     - py-cpuinfo
     - hdf5
     - lzo
+    - lz4-c
+    - zlib-ng
+    - zstd
 
 test:
   requires:
@@ -64,7 +67,7 @@ test:
   commands:
   # pip check raises a false alarm for blosc2, which isn't needed at this time.
   # c-blosc2 has been added in its place.
-    - pip check || 1     # [win]
+    - pip check || cmd /K "exit /b 0"  # [win]
     - pip check || true  # [unix]
     - pt2to3 -h
     - ptdump -h
