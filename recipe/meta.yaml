@@ -50,7 +50,6 @@ requirements:
     - numexpr >=2.6.2
     - blosc
     - c-blosc2
-    - packaging
     - py-cpuinfo
     - hdf5
     - lzo
