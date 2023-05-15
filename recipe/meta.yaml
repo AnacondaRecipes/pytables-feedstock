@@ -58,6 +58,7 @@ requirements:
     - lz4-c
     - zlib-ng
     - zstd
+    - packaging
 
 test:
   requires:
