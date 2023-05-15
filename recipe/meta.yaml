@@ -37,7 +37,7 @@ requirements:
     - wheel
     - numpy 1.19  # [py<310]
     - numpy 1.21  # [py==310]
-    - numpy 1.23  # [py>311]
+    - numpy 1.23  # [py>=311]
     - packaging 23.0
     - py-cpuinfo 8.0.0
     - cython 0.29.33
