@@ -11,7 +11,7 @@ source:
     - patches/use_system_blosc2.patch
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - ptdump = tables.scripts.ptdump:main
     - ptrepack = tables.scripts.ptrepack:main
@@ -35,7 +35,9 @@ requirements:
     - pip
     - setuptools
     - wheel
-    - numpy  {{ numpy }}
+    - numpy 1.19  # [py<310]
+    - numpy 1.21  # [py==310]
+    - numpy 1.23  # [py>=311]
     - packaging 23.0
     - py-cpuinfo 8.0.0
     - cython 0.29.33
@@ -46,7 +48,7 @@ requirements:
     - bzip2 1.0.8
   run:
     - python
-    - numpy {{ numpy }}
+    - {{ pin_compatible('numpy') }}
     - numexpr >=2.6.2
     - blosc
     - c-blosc2
@@ -56,6 +58,7 @@ requirements:
     - lz4-c
     - zlib-ng
     - zstd
+    - packaging
 
 test:
   requires:
