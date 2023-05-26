@@ -88,7 +88,7 @@ about:
     is built on top of the HDF5 library, using the Python language and the
     NumPy package.
   doc_url: https://www.pytables.org/
-  dev_url: https://github.com/PyTables
+  dev_url: https://github.com/PyTables/PyTables
 
 extra:
   recipe-maintainers:
