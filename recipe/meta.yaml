@@ -11,7 +11,7 @@ source:
     - patches/use_system_blosc2.patch
 
 build:
-  number: 1
+  number: 2
   entry_points:
     - ptdump = tables.scripts.ptdump:main
     - ptrepack = tables.scripts.ptrepack:main
@@ -43,7 +43,7 @@ requirements:
     - cython 0.29.33
     - blosc 1.21.3
     - c-blosc2 2.8.0
-    - hdf5 1.12.1
+    - hdf5
     - lzo 2.10
     - bzip2 1.0.8
   run:
@@ -88,7 +88,7 @@ about:
     is built on top of the HDF5 library, using the Python language and the
     NumPy package.
   doc_url: https://www.pytables.org/
-  dev_url: https://github.com/PyTables
+  dev_url: https://github.com/PyTables/PyTables
 
 extra:
   recipe-maintainers:
