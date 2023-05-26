@@ -43,7 +43,7 @@ requirements:
     - cython 0.29.33
     - blosc 1.21.3
     - c-blosc2 2.8.0
-    - hdf5 1.12.1
+    - hdf5
     - lzo 2.10
     - bzip2 1.0.8
   run:
