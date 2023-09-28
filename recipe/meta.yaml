@@ -12,7 +12,7 @@ source:
     - patches/0001-Don-t-copy-blosc2-in-the-package.patch
 
 build:
-  number: 3
+  number: 4
   entry_points:
     - ptdump = tables.scripts.ptdump:main
     - ptrepack = tables.scripts.ptrepack:main
@@ -38,9 +38,9 @@ requirements:
     - numpy 1.19  # [py<310]
     - numpy 1.21  # [py==310]
     - numpy 1.23  # [py>=311]
-    - packaging 23.0
+    - packaging 23
     - py-cpuinfo 8.0.0
-    - cython 0.29.33
+    - cython 0.29
     - blosc 1.21.3
     - c-blosc2 2.8.0
     - hdf5 1.12.1
