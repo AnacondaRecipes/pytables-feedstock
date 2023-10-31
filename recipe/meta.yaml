@@ -42,7 +42,7 @@ requirements:
     - py-cpuinfo 9.0.0
     - cython 0.29
     - blosc 1.21.3
-    - c-blosc2 2.8.0
+    - c-blosc2 2.10.5
     - hdf5 1.12.1
     - lzo 2.10
     - bzip2 1.0.8
