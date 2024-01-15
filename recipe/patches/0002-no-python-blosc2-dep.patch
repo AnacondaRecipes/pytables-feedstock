@@ -1,0 +1,15 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index b503ab65..49d33800 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -72,7 +72,9 @@ dependencies = [
+     "numexpr >= 2.6.2",
+     "packaging",
+     "py-cpuinfo",
+-    "blosc2 >= 2.3.0",
++    # Either python-blosc2 OR c-blosc2
++    # See: https://github.com/PyTables/PyTables/blob/master/doc/source/usersguide/installation.rst
++    #"blosc2 >= 2.3.0",
+ ]
+ 
+ 
