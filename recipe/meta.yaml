@@ -1,5 +1,5 @@
 {% set name = "tables" %}
-{% set version = "3.9.1" %}
+{% set version = "3.9.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,9 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/tables-{{ version }}.tar.gz
-  sha256: 48331503cd509c9f1f95cf2f5c64a57c48c0aa5141423f0eca352965c4f9bf81
+  sha256: d470263c2e50c4b7c8635a0d99ac1ff2f9e704c24d71e5fa33c4529e7d0ad9c3
   patches:
     - patches/0001-Don-t-copy-blosc2-in-the-package.patch
+    - patches/0002-no-python-blosc2-dep.patch
 
 build:
   number: 0
@@ -21,8 +22,6 @@ build:
   skip: true  # [py<39]
   # c-blosc2 is currently not available for s390x
   skip: true  # [s390x]
-  ignore_run_exports:
-    - lzo     # [win]
 
 requirements:
   build:
@@ -38,10 +37,10 @@ requirements:
     - wheel
     - numpy {{ numpy }}
     - packaging
-    - py-cpuinfo 9.0.0
+    - py-cpuinfo
     - cython 0.29
     - blosc 1.21.3
-    - c-blosc2 2.10.5
+    - c-blosc2 2.12.0
     - hdf5 1.12.1
     - lzo 2.10
     - bzip2 1.0.8
@@ -49,13 +48,14 @@ requirements:
     - python
     - {{ pin_compatible('numpy') }}
     - numexpr >=2.6.2
+    - packaging
+    - py-cpuinfo
+    # all with run_exports
     - blosc
     - c-blosc2
-    - py-cpuinfo
     - hdf5
     - lzo
     - bzip2
-    - packaging
 
 test:
   requires:
@@ -64,10 +64,7 @@ test:
     - setuptools
     - py-cpuinfo
   commands:
-  # pip check raises a false alarm for blosc2, which isn't needed at this time.
-  # c-blosc2 has been added in its place.
-    - pip check || cmd /K "exit /b 0"  # [win]
-    - pip check || true  # [unix]
+    - pip check
     - pt2to3 -h
     - ptdump -h
     - ptrepack -h
