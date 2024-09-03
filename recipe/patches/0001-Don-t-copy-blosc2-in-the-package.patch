@@ -1,21 +1,8 @@
-From 5251e69e4083f32bd1f41f8432c6c4b7d2e8a1a4 Mon Sep 17 00:00:00 2001
-From: Charles Bousseau <cbousseau@anaconda.com>
-Date: Tue, 31 Oct 2023 15:29:08 -0400
-Subject: [PATCH] Don't copy blosc2 in the package. We don't want to bundle it.
-
-By default, pytables will copy blosc2 DLLs into the installed package if blosc2 is
-found in a list of hardcoded "standard" paths.
-
-Co-authored-by: Jean-Christophe Morin <jcmorin@anaconda.com>
----
- setup.py | 126 +++++++++++++++++++++++++++----------------------------
- 1 file changed, 63 insertions(+), 63 deletions(-)
-
 diff --git a/setup.py b/setup.py
-index 5ba4b904..345f0f36 100755
+index b3e173a..73cbd1c 100755
 --- a/setup.py
 +++ b/setup.py
-@@ -934,69 +934,69 @@ if __name__ == "__main__":
+@@ -917,75 +917,75 @@ if __name__ == "__main__":
                      f"Update it via `pip install blosc2 -U`."
                  )
  
@@ -58,12 +45,18 @@ index 5ba4b904..345f0f36 100755
 -
 -                else:
 -                    copy_libs += ["libblosc2.dll"]
--                    dll_dir = "C:\\Miniconda\\envs\\build\\Library\\bin"
+-                    dll_dir = f"{CONDA_PREFIX}\\Library\\bin"
 -                    # Copy dlls when producing the wheels in CI
 -                    if "bdist_wheel" in sys.argv and os.path.exists(dll_dir):
--                        shutil.copy(
--                            libdir.parent / "bin" / "libblosc2.dll", dll_dir
--                        )
+-                        # If building a wheel and Conda in use, these could be the
+-                        # same path. Indicative that the ``rundir`` check is probably
+-                        # not sufficient above, but easy enough to guard against
+-                        # trying to copy a file to its current location
+-                        # (thereby avoiding a "are the same file" shutil error).
+-                        if Path(dll_dir) != libdir.parent / "bin":
+-                            shutil.copy(
+-                                libdir.parent / "bin" / "libblosc2.dll", dll_dir
+-                            )
 -                    else:
 -                        shutil.copy(
 -                            libdir.parent / "bin" / "libblosc2.dll", "tables"
@@ -82,72 +75,75 @@ index 5ba4b904..345f0f36 100755
 -                    f"in {loc}. In case of runtime problems, please "
 -                    f"remember to install it.",
 -                )
-+        # if not rundir:
-+        #     loc = {
-+        #         "posix": "the default library paths",
-+        #         "nt": "any of the directories in %%PATH%%",
-+        #     }[os.name]
++        #if not rundir:
++        #    loc = {
++        #        "posix": "the default library paths",
++        #        "nt": "any of the directories in %%PATH%%",
++        #    }[os.name]
 +
-+        #     if package.name == "blosc2":
-+        #         # We will copy this into the tables directory
-+        #         print(
-+        #             "  * Copying blosc2 runtime library to 'tables' dir"
-+        #             " because it was not found in standard locations"
-+        #         )
-+        #         platform_system = platform.system()
-+        #         if platform_system == "Linux":
-+        #             shutil.copy(libdir / "libblosc2.so", ROOT / "tables")
-+        #             copy_libs += ["libblosc2.so"]
++        #    if package.name == "blosc2":
++        #        # We will copy this into the tables directory
++        #        print(
++        #            "  * Copying blosc2 runtime library to 'tables' dir"
++        #            " because it was not found in standard locations"
++        #        )
++        #        platform_system = platform.system()
++        #        if platform_system == "Linux":
++        #            shutil.copy(libdir / "libblosc2.so", ROOT / "tables")
++        #            copy_libs += ["libblosc2.so"]
 +
-+        #             dll_dir = "/tmp/hdf5/lib"
-+        #             # Copy dlls when producing the wheels in CI
-+        #             if "bdist_wheel" in sys.argv and os.path.exists(dll_dir):
-+        #                 shared_libs = glob.glob(str(libdir) + "/libblosc2.so*")
-+        #                 for lib in shared_libs:
-+        #                     shutil.copy(lib, dll_dir)
++        #            dll_dir = "/tmp/hdf5/lib"
++        #            # Copy dlls when producing the wheels in CI
++        #            if "bdist_wheel" in sys.argv and os.path.exists(dll_dir):
++        #                shared_libs = glob.glob(str(libdir) + "/libblosc2.so*")
++        #                for lib in shared_libs:
++        #                    shutil.copy(lib, dll_dir)
 +
-+        #         elif platform_system == "Darwin":
-+        #             shutil.copy(libdir / "libblosc2.dylib", ROOT / "tables")
-+        #             copy_libs += ["libblosc2.dylib"]
++        #        elif platform_system == "Darwin":
++        #            shutil.copy(libdir / "libblosc2.dylib", ROOT / "tables")
++        #            copy_libs += ["libblosc2.dylib"]
 +
-+        #             dll_dir = "/tmp/hdf5/lib"
-+        #             # Copy dlls when producing the wheels in CI
-+        #             if "bdist_wheel" in sys.argv and os.path.exists(dll_dir):
-+        #                 shared_libs = glob.glob(
-+        #                     str(libdir) + "/libblosc2*.dylib"
-+        #                 )
-+        #                 for lib in shared_libs:
-+        #                     shutil.copy(lib, dll_dir)
++        #            dll_dir = "/tmp/hdf5/lib"
++        #            # Copy dlls when producing the wheels in CI
++        #            if "bdist_wheel" in sys.argv and os.path.exists(dll_dir):
++        #                shared_libs = glob.glob(
++        #                    str(libdir) + "/libblosc2*.dylib"
++        #                )
++        #                for lib in shared_libs:
++        #                    shutil.copy(lib, dll_dir)
 +
-+        #         else:
-+        #             copy_libs += ["libblosc2.dll"]
-+        #             dll_dir = "C:\\Miniconda\\envs\\build\\Library\\bin"
-+        #             # Copy dlls when producing the wheels in CI
-+        #             if "bdist_wheel" in sys.argv and os.path.exists(dll_dir):
-+        #                 shutil.copy(
-+        #                     libdir.parent / "bin" / "libblosc2.dll", dll_dir
-+        #                 )
-+        #             else:
-+        #                 shutil.copy(
-+        #                     libdir.parent / "bin" / "libblosc2.dll", "tables"
-+        #                 )
-+        #     else:
-+        #         if "bdist_wheel" in sys.argv and os.name == "nt":
-+        #             exit_with_error(
-+        #                 f"Could not find the {package.name} runtime.",
-+        #                 f"The {package.name} shared library was *not* found "
-+        #                 f"in {loc}. Cannot build wheel without the runtime.",
-+        #             )
++        #        else:
++        #            copy_libs += ["libblosc2.dll"]
++        #            dll_dir = f"{CONDA_PREFIX}\\Library\\bin"
++        #            # Copy dlls when producing the wheels in CI
++        #            if "bdist_wheel" in sys.argv and os.path.exists(dll_dir):
++        #                # If building a wheel and Conda in use, these could be the
++        #                # same path. Indicative that the ``rundir`` check is probably
++        #                # not sufficient above, but easy enough to guard against
++        #                # trying to copy a file to its current location
++        #                # (thereby avoiding a "are the same file" shutil error).
++        #                if Path(dll_dir) != libdir.parent / "bin":
++        #                    shutil.copy(
++        #                        libdir.parent / "bin" / "libblosc2.dll", dll_dir
++        #                    )
++        #            else:
++        #                shutil.copy(
++        #                    libdir.parent / "bin" / "libblosc2.dll", "tables"
++        #                )
++        #    else:
++        #        if "bdist_wheel" in sys.argv and os.name == "nt":
++        #            exit_with_error(
++        #                f"Could not find the {package.name} runtime.",
++        #                f"The {package.name} shared library was *not* found "
++        #                f"in {loc}. Cannot build wheel without the runtime.",
++        #            )
 +
-+        #         print_warning(
-+        #             f"Could not find the {package.name} runtime.",
-+        #             f"The {package.name} shared library was *not* found "
-+        #             f"in {loc}. In case of runtime problems, please "
-+        #             f"remember to install it.",
-+        #         )
++        #        print_warning(
++        #            f"Could not find the {package.name} runtime.",
++        #            f"The {package.name} shared library was *not* found "
++        #            f"in {loc}. In case of runtime problems, please "
++        #            f"remember to install it.",
++        #        )
  
          if os.name == "nt":
              # LZO DLLs cannot be copied to the binary package for license
--- 
-2.39.3 (Apple Git-145)
-
