@@ -8,6 +8,8 @@ package:
 source:
   url: https://pypi.io/packages/source/t/tables/tables-{{ version }}.tar.gz
   sha256: 2544812a7186fadba831d6dd34eb49ccd788d6a83f4e4c2b431b835b6796c910
+  patches:
+    - patches/0002-no-python-blosc2-dep.patch
 
 build:
   number: 0
