@@ -34,7 +34,7 @@ requirements:
     - pip
     - setuptools
     - wheel
-    - numpy {{ numpy }}
+    - numpy >=2.0,<2.3
     - packaging
     - py-cpuinfo
     - cython >=3.0.11
@@ -46,7 +46,7 @@ requirements:
     - typing-extensions >=4.4.0
   run:
     - python
-    - {{ pin_compatible('numpy') }}
+    - numpy >=2.0,<2.3
     - numexpr >=2.6.2
     - packaging
     - py-cpuinfo
