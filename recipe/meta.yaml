@@ -1,5 +1,5 @@
 {% set name = "pytables" %}
-{% set version = "3.10.1" %}
+{% set version = "3.10.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/t/tables/tables-{{ version }}.tar.gz
-  sha256: 4aa07ac734b9c037baeaf44aec64ec902ad247f57811b59f30c4e31d31f126cf
-  patches:
-    - patches/0001-Don-t-copy-blosc2-in-the-package.patch
-    - patches/0002-no-python-blosc2-dep.patch
+  sha256: 2544812a7186fadba831d6dd34eb49ccd788d6a83f4e4c2b431b835b6796c910
 
 build:
   number: 0
@@ -19,7 +16,7 @@ build:
     - ptrepack = tables.scripts.ptrepack:main
     - pt2to3 = tables.scripts.pt2to3:main
     - pttree = tables.scripts.pttree:main
-  skip: true  # [py<310]
+  skip: true  # [py<311]
   # c-blosc2 is currently not available for s390x
   skip: true  # [s390x]
 
@@ -38,7 +35,7 @@ requirements:
     - numpy {{ numpy }}
     - packaging
     - py-cpuinfo
-    - cython >=0.29.32
+    - cython >=3.0.11
     - blosc 1.21.3
     - c-blosc2 2.12.0
     - hdf5 {{ hdf5 }}
