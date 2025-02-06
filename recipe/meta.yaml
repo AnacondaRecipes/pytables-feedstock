@@ -13,7 +13,7 @@ source:
     - patches/0002-no-python-blosc2-dep.patch
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - ptdump = tables.scripts.ptdump:main
     - ptrepack = tables.scripts.ptrepack:main
@@ -35,8 +35,7 @@ requirements:
     - pip
     - setuptools
     - wheel
-    - numpy {{ numpy }}
-    - packaging
+    - numpy 2
     - py-cpuinfo
     - cython 0.29
     - blosc 1.21.3
@@ -46,7 +45,7 @@ requirements:
     - bzip2 1.0.8
   run:
     - python
-    - {{ pin_compatible('numpy') }}
+    - numpy >=1.20.0
     - numexpr >=2.6.2
     - packaging
     - py-cpuinfo
