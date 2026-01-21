@@ -13,7 +13,7 @@ source:
     - patches/0002-no-python-blosc2-dep.patch
 
 build:
-  number: 2
+  number: 3
   entry_points:
     - ptdump = tables.scripts.ptdump:main
     - ptrepack = tables.scripts.ptrepack:main
@@ -27,8 +27,6 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - patch  # [unix]
-    - m2-patch  # [win]
     - pkg-config
   host:
     - python
@@ -41,7 +39,7 @@ requirements:
     - py-cpuinfo
     - cython >=3.0.11
     - blosc 1.21.3
-    - c-blosc2 2.17.1
+    - c-blosc2 2.22.0
     - hdf5 {{ hdf5 }}
     - lzo {{ lzo }}
     - bzip2 {{ bzip2 }}
