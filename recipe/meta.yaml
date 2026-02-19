@@ -13,18 +13,17 @@ source:
     - patches/0002-no-python-blosc2-dep.patch
 
 build:
-  number: 3
+  number: 4
   entry_points:
     - ptdump = tables.scripts.ptdump:main
     - ptrepack = tables.scripts.ptrepack:main
     - pt2to3 = tables.scripts.pt2to3:main
     - pttree = tables.scripts.pttree:main
   skip: true  # [py<311]
-  # c-blosc2 is currently not available for s390x
-  skip: true  # [s390x]
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - pkg-config
@@ -33,13 +32,12 @@ requirements:
     - pip
     - setuptools
     - wheel
-    - numpy 2.0 # [py<313]
-    - numpy 2.1 # [py==313]
+    - numpy {{ numpy }}
     - packaging
     - py-cpuinfo
     - cython >=3.0.11
-    - blosc 1.21.3
-    - c-blosc2 2.22.0
+    - blosc {{ blosc }}
+    - c-blosc2 {{ c_blosc2 }}
     - hdf5 {{ hdf5 }}
     - lzo {{ lzo }}
     - bzip2 {{ bzip2 }}
