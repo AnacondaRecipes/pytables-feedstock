@@ -1,19 +1,19 @@
 {% set name = "pytables" %}
-{% set version = "3.10.2" %}
+{% set version = "3.11.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/t/tables/tables-{{ version }}.tar.gz
-  sha256: 2544812a7186fadba831d6dd34eb49ccd788d6a83f4e4c2b431b835b6796c910
+  url: https://pypi.org/packages/source/t/tables/tables-{{ version }}.tar.gz
+  sha256: 78abcf413091bc7c1e4e8c10fbbb438d1ac0b5a87436c5b972c3e8253871b6fb
   patches:
     - patches/0001-Don-t-copy-blosc2-in-the-package.patch
     - patches/0002-no-python-blosc2-dep.patch
 
 build:
-  number: 5
+  number: 0
   entry_points:
     - ptdump = tables.scripts.ptdump:main
     - ptrepack = tables.scripts.ptrepack:main
@@ -74,7 +74,7 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
-  summary: 'Brings together Python, HDF5 and NumPy to easily handle large amounts of data.'
+  summary: Brings together Python, HDF5 and NumPy to easily handle large amounts of data.
   description: |
     PyTables is a package for managing hierarchical datasets and designed to
     efficiently and easily cope with extremely large amounts of data. PyTables
