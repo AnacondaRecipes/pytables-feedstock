@@ -1,15 +1,21 @@
 diff --git a/pyproject.toml b/pyproject.toml
-index 64ada51..3515a9b 100644
+index f838c314..8b9ea247 100644
 --- a/pyproject.toml
 +++ b/pyproject.toml
-@@ -78,7 +78,9 @@ dependencies = [
+@@ -16,7 +16,7 @@ requires = [
+     # Included here for seamless wheel builds.
+     # Packagers can choose to replace it by externally provided
+     # c-blosc2 library and headers
+-    "blosc2 >= 2.3.0",
++    # "blosc2 >= 2.3.0",
+ ]
+ build-backend = "setuptools.build_meta"
+ # build-backend = "mesonpy"  # and replace ``setuptools`` above
+@@ -72,7 +72,6 @@ dependencies = [
      "numexpr >= 2.6.2",
      "packaging",
      "py-cpuinfo",
 -    "blosc2 >= 2.3.0",
-+    # Either python-blosc2 OR c-blosc2
-+    # See: https://github.com/PyTables/PyTables/blob/master/doc/source/usersguide/installation.rst
-+    #"blosc2 >= 2.3.0",
-     "typing-extensions >= 4.4.0",
  ]
+ 
  
