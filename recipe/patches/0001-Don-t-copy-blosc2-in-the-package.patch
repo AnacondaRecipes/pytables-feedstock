@@ -2,9 +2,11 @@ diff --git a/setup-old.py b/setup.py
 old mode 100644
 new mode 100755
 index 259bcd5e..bd3e9f6f
---- a/setup-old.py
+diff --git a/setup.py b/setup.py
+index 5d10d2cc..49dac868 100755
+--- a/setup.py
 +++ b/setup.py
-@@ -938,76 +938,76 @@ if __name__ == "__main__":
+@@ -962,76 +962,76 @@ if __name__ == "__main__":
                      f"Update it via `pip install blosc2 -U`."
                  )
  
