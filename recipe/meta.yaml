@@ -33,15 +33,15 @@ requirements:
     - setuptools
     - wheel
     - numpy {{ numpy }}
-    - packaging
-    - py-cpuinfo
-    - cython >=3.0.11
+    - packaging 25.0
+    - py-cpuinfo 9.0.0
+    - cython 3.2.4
     - blosc {{ blosc }}
     - c-blosc2 {{ c_blosc2 }}
     - hdf5 {{ hdf5 }}
     - lzo {{ lzo }}
     - bzip2 {{ bzip2 }}
-    - typing-extensions >=4.4.0
+    - typing-extensions 4.15.0
   run:
     - python
     - numpy >=1.20
