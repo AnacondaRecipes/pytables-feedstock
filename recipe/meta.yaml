@@ -11,6 +11,8 @@ source:
   patches:
     - patches/0001-Don-t-copy-blosc2-in-the-package.patch
     - patches/0002-no-python-blosc2-dep.patch
+    # Backport of upstream PyTables#1328: c-blosc2 3.x removed public BLOSC2_MAX_DIM; use B2ND_MAX_DIM from b2nd.h
+    - patches/0003-c-blosc2-3x-b2nd-max-dim.patch
 
 build:
   number: 1
