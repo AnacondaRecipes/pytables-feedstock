@@ -33,7 +33,7 @@ requirements:
   host:
     - python
     - pip
-    - setuptools
+    - setuptools >=61.0.0
     - wheel
     - numpy {{ numpy }}
     - packaging
@@ -44,14 +44,12 @@ requirements:
     - hdf5 {{ hdf5 }}
     - lzo {{ lzo }}
     - bzip2 {{ bzip2 }}
-    - typing-extensions
   run:
     - python
     - numpy >=1.20
     - numexpr >=2.6.2
     - packaging
     - py-cpuinfo
-    - typing-extensions >=4.4.0
     # all with run_exports
     - blosc
     - c-blosc2
