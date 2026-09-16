@@ -11,9 +11,12 @@ source:
   patches:
     - patches/0001-Don-t-copy-blosc2-in-the-package.patch
     - patches/0002-no-python-blosc2-dep.patch
+    # Backport of https://github.com/PyTables/PyTables/pull/1328 (patch 1/2, by Francesc Alted):
+    # c-blosc2 3.x removed public BLOSC2_MAX_DIM; re-define it (8) when absent. setup.py hunk dropped (absent in 3.11.1)
+    - patches/0003-c-blosc2-3x-compat.patch
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - ptdump = tables.scripts.ptdump:main
     - ptrepack = tables.scripts.ptrepack:main
@@ -30,25 +33,23 @@ requirements:
   host:
     - python
     - pip
-    - setuptools
+    - setuptools >=61.0.0
     - wheel
     - numpy {{ numpy }}
-    - packaging 25.0
-    - py-cpuinfo 9.0.0
-    - cython 3.2.4
+    - packaging
+    - py-cpuinfo
+    - cython >=3.1
     - blosc {{ blosc }}
     - c-blosc2 {{ c_blosc2 }}
     - hdf5 {{ hdf5 }}
     - lzo {{ lzo }}
     - bzip2 {{ bzip2 }}
-    - typing-extensions 4.15.0
   run:
     - python
     - numpy >=1.20
     - numexpr >=2.6.2
     - packaging
     - py-cpuinfo
-    - typing-extensions >=4.4.0
     # all with run_exports
     - blosc
     - c-blosc2

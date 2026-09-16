@@ -1,0 +1,28 @@
+From bb69c8a9f19135eeaf00ba171ef49f9cca28f399 Mon Sep 17 00:00:00 2001
+From: Francesc Alted <francesc@blosc.org>
+Date: Mon, 29 Jun 2026 18:35:40 +0200
+Subject: [PATCH 1/2] Move the current 'hack-ish' BLOSC2_MAX_DIM to a better
+ place
+
+---
+ hdf5-blosc2/src/blosc2_filter.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/hdf5-blosc2/src/blosc2_filter.c b/hdf5-blosc2/src/blosc2_filter.c
+index 03bf78984..ab79316fb 100644
+--- a/hdf5-blosc2/src/blosc2_filter.c
++++ b/hdf5-blosc2/src/blosc2_filter.c
+@@ -29,6 +29,13 @@
+ 
+ #define GET_FILTER(a, b, c, d, e, f, g) H5Pget_filter_by_id(a,b,c,d,e,f,g,NULL)
+ 
++/* BLOSC2_MAX_DIM was removed from blosc2.h in c-blosc2 3.x
++   (renamed to B2ND_MAX_DIM in b2nd.h).  Keep the pre-3.0 default
++   since hdf5-blosc2's CD-values layout assumes at most 8 dims. */
++#ifndef BLOSC2_MAX_DIM
++#define BLOSC2_MAX_DIM 8
++#endif
++
+ /* Auxiliary filter values are:
+  *
+  * - 0: filter revision (FILTER_BLOSC2_VERSION)
