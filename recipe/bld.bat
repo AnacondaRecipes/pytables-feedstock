@@ -8,6 +8,7 @@ set BLOSC2_LIBDIR=%LIBRARY_LIB%
 set BLOSC2_INCDIR=%LIBRARY_INC%
 set PYTABLES_NO_BLOSC2_WHEEL=1
 set PYTABLES_NO_EMBEDDED_LIBS=1
+set "CL=%CL% /DBLOSC2_MAX_DIM=B2ND_MAX_DIM"
 
 %PYTHON% -m pip install --no-deps --no-build-isolation --no-cache-dir --ignore-installed . -v
 if errorlevel 1 exit 1

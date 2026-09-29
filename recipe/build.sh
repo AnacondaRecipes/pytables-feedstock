@@ -10,6 +10,7 @@ export BLOSC2_LIBDIR=$PREFIX/lib
 export BLOSC2_INCDIR=$PREFIX/include
 export PYTABLES_NO_BLOSC2_WHEEL=1
 export PYTABLES_NO_EMBEDDED_LIBS=1
+export CPPFLAGS="${CPPFLAGS} -DBLOSC2_MAX_DIM=B2ND_MAX_DIM"
 
 # Remove the pre-cythonized files which may not be compatible.
 rm -f tables/*.c
